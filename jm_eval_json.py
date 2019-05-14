@@ -2,10 +2,16 @@
 # FILE: jm_eval_json.py
 # AUTH: Matthew Baum
 # DATE: 2018/05/01
-# DESC: Todo...
+# DESC: This script is meant as a post-processing step for Jmeter 5.1.1+ load tests which optionally
+#       generate summary stats in JSON format on test completion.
 # PRMS:
-#     --if:   The input file to process (required: TRUE)
-#     --eval: Semicolon-delimited list of conditions to evaluate on the target JSON file (required: TRUE)
+#     --if:      The input file to process (required: TRUE)
+#     --eval:    Semicolon-delimited list of conditions to evaluate on the target JSON file (required: TRUE)
+#     --verbose: Enable vebose output (no argument required)
+#     --help:    Print this help message (no argument required)
+# RTRN:
+#     - 0: All evaluations successful
+#     - 1: Evaluations failed or other runtime errors occured
 # NOTE: Example:
 #   python jm_eval_json.py --if=test/statistics.json --eval="Total.errorPct<5;Total.pct2ResTime<1000" --verbose
 ##########################################################################################################################
@@ -39,17 +45,24 @@ def printifv(str):
 def print_help():
   global g_SCRIPT_VERSION
   
-  msg = """  CSV Stats Cruncher (v{0}):
+  msg = """  JMeter Stats Evaluator (v{0}):
     This script is meant as a post-processing step for Jmeter 5.1.1+ load tests
-    which optionally generate summary stats in JSON format pon test completion.
+    which optionally generate summary stats in JSON format on test completion.
     
   Command line arguments:
-    NOTE: All arguments with values must be supplied in the form: --key=value
+    NOTE: All arguments with values must be supplied in the form: --key=value (unless specified)
     
-    --if:     The input file to process (required: TRUE)
-    --eval
-    --verbose
-    --help
+    --if:      The input file to process (required)
+    
+    --eval:    A semicolon-delimited list of conditions to evaluate on the input JSON file (required):
+                The left-hand side of a condition is a fully-qualified JSON property name
+                The right-hand side of a condition is a numeric value
+                The following operators are allowed between both operands:
+                <, >, <=, >=, ==, !=
+                Example: "Total.errorPct<5;Total.pct2ResTime<1000"
+                
+    --verbose: Enable vebose output (no argument required)
+    --help:    Print this help message (no argument required)
   """
   
   print(msg.format(g_SCRIPT_VERSION))
