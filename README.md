@@ -2,4 +2,4 @@
 Python evaluation script to post-process JSON stats from JMeter
 
 For usage instructions run:  
-jm_eval_json.py --help
+python jm_eval_json.py --help
