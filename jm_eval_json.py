@@ -170,4 +170,4 @@ if __name__ == '__main__':
     obj = json_file_to_obj(g_arg_fin)
     retval = eval_all(obj, g_arg_eval)
   
-  sys.exit(retval)
+  sys.exit(g_EXIT_PASS if retval else g_EXIT_FAIL)
