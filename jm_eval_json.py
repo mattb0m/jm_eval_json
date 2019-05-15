@@ -130,7 +130,6 @@ def eval_expr(obj, expr):
   lhs = matches.group(1)
   cmp = matches.group(2)
   rhs = matches.group(3)
-  #print(lhs+"|"+cmp+"|"+rhs)
   
   fields = lhs.split('.')
   attr = obj
@@ -171,8 +170,6 @@ def eval_all(obj, expr_list_str):
 #--------------------------------------------------------------------------
 if __name__ == '__main__':
   retval = g_EXIT_PASS
-  
-  print('\n')
   parse_args(sys.argv)
   
   if g_arg_fin == '' or g_arg_eval == '':
