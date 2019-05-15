@@ -135,7 +135,10 @@ def eval_expr(obj, expr):
   attr = obj
 
   for field in fields:
-    attr = attr[field]
+    try:
+      attr = attr[field]
+    except KeyError:
+      return False
   
   if not isinstance(attr, numbers.Number):
     printifv(".... Field must be a number!")
