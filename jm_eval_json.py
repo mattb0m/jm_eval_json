@@ -21,7 +21,7 @@ import re
 import numbers
 
 # Script globals
-g_SCRIPT_VERSION = '1.0'
+g_SCRIPT_VERSION = '1.1'
 g_arg_fin = ''
 g_arg_eval = ''
 g_arg_verbose = False
