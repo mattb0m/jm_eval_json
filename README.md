@@ -2,7 +2,7 @@
 Python evaluation script to post-process JSON stats from JMeter
 
 For usage instructions run:  
-python jm_eval_json.py --help
+`python jm_eval_json.py --help`
 
 To run unit tests, execute:  
-python test/test.py
+`python test/test.py`
