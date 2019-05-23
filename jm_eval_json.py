@@ -99,21 +99,21 @@ def json_file_to_obj(path):
   obj = json.loads(json_str)
   return obj
 
-def eval_comparison(lhs, rhs, cmp):
-  if cmp == '<':
+def eval_comparison(lhs, rhs, oper):
+  if oper == '<':
     return lhs<rhs
-  elif cmp == '>':
+  elif oper == '>':
     return lhs>rhs
-  elif cmp == '<=':
+  elif oper == '<=':
     return lhs<=rhs
-  elif cmp == '>=':
+  elif oper == '>=':
     return lhs>=rhs
-  elif cmp == '==':
+  elif oper == '==':
     return lhs==rhs
-  elif cmp == '!=':
+  elif oper == '!=':
     return lhs!=rhs
   else:
-    printifv("Error: Invalid operator: " + cmp)
+    printifv("Error: Invalid operator: " + oper)
     return False
   
 def eval_expr(obj, expr):
@@ -128,7 +128,7 @@ def eval_expr(obj, expr):
     return False
   
   lhs = matches.group(1)
-  cmp = matches.group(2)
+  oper = matches.group(2)
   rhs = matches.group(3)
   
   fields = lhs.split('.')
@@ -150,7 +150,7 @@ def eval_expr(obj, expr):
     printifv(".... RHS must be a number!")
     return False
   
-  retval = eval_comparison(attr, rhs, cmp)
+  retval = eval_comparison(attr, rhs, oper)
   
   if retval:
     printifv("....(PASS)")
