@@ -31,9 +31,6 @@ g_EXIT_FAIL = 1
 #--------------------------------------------------------------------------
 # Helpers: prettily print exceptions and print if VERBOSE flag
 #--------------------------------------------------------------------------
-def printerr(pre, err):
-  print("ERROR:", pre, "(", err.errno, "):\n    ->", err.strerror)
-
 def printifv(str):
   global g_arg_verbose
   if g_arg_verbose:
@@ -93,10 +90,14 @@ def parse_args(argv):
 # Read JSON file and deserialize into object
 #--------------------------------------------------------------------------
 def json_file_to_obj(path):
-  f = open(path, 'rb')
-  json_str = f.read()
-  f.close()
-  obj = json.loads(json_str)
+  try:
+    f = open(path, 'rb')
+    json_str = f.read()
+    f.close()
+    obj = json.loads(json_str)
+  except:
+    return None
+  
   return obj
 
 def eval_comparison(lhs, rhs, oper):
@@ -181,6 +182,11 @@ if __name__ == '__main__':
   else:
     printifv("INFO: evaluating stats file '" + g_arg_fin + "' ...")
     obj = json_file_to_obj(g_arg_fin)
+    
+    if obj is None:
+      printifv("ERROR: failed to load JSON from file '" + g_arg_fin + "'")
+      sys.exit(g_EXIT_FAIL)
+    
     retval = eval_all(obj, g_arg_eval)
   
   sys.exit(g_EXIT_PASS if retval else g_EXIT_FAIL)

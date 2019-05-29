@@ -1,0 +1,17 @@
+{
+  "Total" : {
+    "transaction" :
+    "sampleCount" : 69445,
+    "errorCount" : 127,
+    "errorPct" : 0.18287854,
+    "meanResTime" : 476.07106343149195,
+    "minResTime" : 0.0,
+    "maxResTime" : 30316.0,
+    "pct1ResTime" : 249.0,
+    "pct2ResTime" : 570.0,
+    "pct3ResTime" : 748.0,
+    "throughput" : 16.65409226144083,
+    "receivedKBytesPerSec" : 12.948563243927355,
+    "sentKBytesPerSec" : 19.779196197758264
+  }
+}
